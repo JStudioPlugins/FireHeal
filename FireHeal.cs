@@ -1,4 +1,5 @@
-﻿using Rocket.Core.Logging;
+﻿using Rocket.API;
+using Rocket.Core.Logging;
 using Rocket.Core.Plugins;
 using Rocket.Unturned.Chat;
 using Rocket.Unturned.Events;
@@ -22,7 +23,7 @@ namespace FireHeal
 
         private void UnturnedPlayerEvents_OnPlayerUpdateGesture(Rocket.Unturned.Player.UnturnedPlayer player, UnturnedPlayerEvents.PlayerGesture gesture)
         {
-            if (gesture == UnturnedPlayerEvents.PlayerGesture.Rest_Start)
+            if (gesture == UnturnedPlayerEvents.PlayerGesture.Rest_Start && player.HasPermission(Configuration.Instance.permission))
             {
                 var fh = healed.FirstOrDefault(x => x.player == player.CSteamID);
                 var fhi = healed.FindIndex(x => x.player == player.CSteamID);

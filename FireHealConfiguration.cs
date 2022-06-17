@@ -11,10 +11,12 @@ namespace FireHeal
     {
         public int cooldownMin { get; set; }
         public byte healAmount { get; set; }
+        public string permission { get; set; }
         public void LoadDefaults()
         {
             cooldownMin = 20;
             healAmount = 40;
+            permission = "fireheal.heal";
         }
     }
 }
