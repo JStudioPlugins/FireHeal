@@ -1,4 +1,5 @@
 ﻿using Rocket.API;
+using Rocket.API.Collections;
 using Rocket.Core.Logging;
 using Rocket.Core.Plugins;
 using Rocket.Unturned.Chat;
@@ -39,12 +40,12 @@ namespace FireHeal
                             player.Heal(Configuration.Instance.healAmount);
                             healed.RemoveAt(fhi);
                             healed.Add(new FH { player = player.CSteamID, time = DateTime.Now});
-                            UnturnedChat.Say(player, $"Healed, please wait {Configuration.Instance.cooldownMin} minutes to be healed again");
+                            UnturnedChat.Say(player, Translate("HealFire", Configuration.Instance.cooldownMin));
                             return;
                         }
                         else
                         {
-                            UnturnedChat.Say(player, $"You are not near a fire!");
+                            UnturnedChat.Say(player, Translate("NotNearFire"));
                         }
                     }
                 }
@@ -54,12 +55,12 @@ namespace FireHeal
                     {
                         player.Heal(Configuration.Instance.healAmount);
                         healed.Add(new FH { player = player.CSteamID, time = DateTime.Now });
-                        UnturnedChat.Say(player, $"Healed, please wait {Configuration.Instance.cooldownMin} minutes to be healed again");
+                        UnturnedChat.Say(player, Translate("HealFire", Configuration.Instance.cooldownMin));
                         return;
                     }
                     else
                     {
-                        UnturnedChat.Say(player, $"You are not near a fire!");
+                        UnturnedChat.Say(player, Translate("NotNearFire"));
                     }
                 }
             }
@@ -71,5 +72,11 @@ namespace FireHeal
             healed = null;
             Logger.Log("FireHeal is unloaded. Heal by fire!");
         }
+
+        public override TranslationList DefaultTranslations => new TranslationList()
+        {
+            { "NotNearFire", "You are not near a fire!" },
+            { "HealFire", "Healed, please wait {0} minutes to be healed again" }
+        };
     }
 }
