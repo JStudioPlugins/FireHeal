@@ -9,14 +9,19 @@ namespace FireHeal
 {
     public class FireHealConfiguration : IRocketPluginConfiguration
     {
-        public int cooldownMin { get; set; }
-        public byte healAmount { get; set; }
-        public string permission { get; set; }
+        public HealGroup[] groups { get; set; }
+
         public void LoadDefaults()
         {
-            cooldownMin = 20;
-            healAmount = 40;
-            permission = "fireheal.heal";
+            groups = new HealGroup[]
+            {
+                new HealGroup()
+                {
+                    permission = "fireheal.standard",
+                    amount = 40,
+                    cooldownMin = 1
+                }
+            };
         }
     }
 }

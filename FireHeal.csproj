@@ -82,8 +82,9 @@
   <ItemGroup>
     <Compile Include="FireHeal.cs" />
     <Compile Include="FireHealConfiguration.cs" />
+    <Compile Include="HealGroup.cs" />
+    <Compile Include="PlayerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="FH.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
